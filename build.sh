@@ -174,15 +174,15 @@ download() {
     echo 'Downloading opencv source'
 
     ### Get opencv ###
-    wget -O opencv.zip https://github.com/opencv/opencv_contrib/archive/"$opencv_version".zip
+    wget -O opencv.zip https://github.com/opencv/opencv/archive/"$opencv_version".zip
     ### Get opencv_contrib ###
     wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/"$opencv_version".zip
 }
 
 expand() {
     echo 'Expanding source code'
-    unzip opencv_contrib.zip
     unzip opencv.zip
+    unzip opencv_contrib.zip
 }
 
 configure() {
