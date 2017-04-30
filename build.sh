@@ -4,6 +4,10 @@
 auto=false
 threads=1
 
+### Config ###
+
+opencv_version="3.2.0"
+
 ### Usage ###
 usage() {
 echo "
@@ -156,10 +160,9 @@ download() {
     echo 'Downloading opencv source'
 
     ### Get opencv ###
-    wget -O opencv.zip https://github.com/Itseez/opencv/archive/3.2.0.zip
-
+    wget -O opencv.zip https://github.com/opencv/opencv_contrib/archive/"$opencv_version".zip
     ### Get opencv_contrib ###
-    wget -O opencv_contrib.zip https://github.com/Itseez/opencv_contrib/archive/3.2.0.zip
+    wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/"$opencv_version".zip
 }
 
 expand() {
@@ -195,7 +198,6 @@ build() {
 
     threadArg="-j$threads"
 
-    # todo fixme to use threads
     make "$threadArg"
 
     cd ..
@@ -206,6 +208,9 @@ install() {
     echo 'Installing opencv to system.'
     sudo make install
 }
+
+#todo implement cleanup()
+#todo implement uninstall()
 
 ### End function definitions ###
 
