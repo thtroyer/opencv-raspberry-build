@@ -3,6 +3,7 @@
 ### Defaults ###
 auto=false
 threads=1
+default_command="all"
 
 ### Config ###
 
@@ -10,7 +11,7 @@ opencv_version="3.2.0"
 
 ### Usage ###
 usage() {
-echo "
+    echo "
 usage: ./build.sh [options] [command]
 
 Note -- script should be run only when in the same directory as the script.
@@ -30,7 +31,7 @@ Available options:
 Examples:
 ./build.sh all  (runs all steps)
 ./build.sh build --threads 2  (runs the build step only with 2 threads (update and download need to already have been run)
-"
+    "
 
     exit 0
 }
@@ -79,8 +80,21 @@ while true; do
 done
 
 if [[ $# -ne 1 ]]; then
-    usage
-    exit 4
+    read -p "No command given.  Did you want to run all steps for global installation (y/n)? " choice
+    case "$choice" in 
+        y|Y ) 
+            echo 
+            ;;
+        n|N ) 
+            usage
+            exit 1
+            ;;
+        * ) 
+            echo "Invalid choice."
+            usage
+            exit 1
+            ;;
+    esac
 fi
 
 ### WARNING ###
