@@ -220,7 +220,14 @@ build() {
 
 install() {
     echo 'Installing opencv to system.'
+
+    cd $PWD/opencv-3.2.0/
+    cd build
+
     sudo make install
+
+    cd ..
+    cd ..
 }
 
 #todo implement cleanup()
